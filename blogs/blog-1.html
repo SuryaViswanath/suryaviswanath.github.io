@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Robust and Privacy-Preserving Machine Learning Models - Your Name</title>
+    <style>
+        /* Global Styles - Same as index.html */
+        :root {
+            --primary-color: #333;
+            --secondary-color: #4a90e2;
+            --background-color: #fff;
+            --text-color: #333;
+            --border-color: #eaeaea;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+        
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+        
+        /* Blog Post Styles */
+        .blog-post {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .blog-header {
+            margin-bottom: 30px;
+        }
+        
+        .blog-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .post-tags {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .tag {
+            background-color: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+        
+        .blog-content {
+            line-height: 1.8;
+        }
+        
+        .blog-content h2 {
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.4rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .blog-content p {
+            margin-bottom: 20px;
+        }
+        
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .blog-content li {
+            margin-bottom: 10px;
+        }
+        
+        .blog-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .blog-content pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .blog-content code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .blog-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .blog-nav a {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="site-title">Your Name</a>
+                <div class="nav-links">
+                    <a href="index.html#publications">Publications</a>
+                    <a href="index.html#talks">Talks</a>
+                    <a href="blog.html">Blog Posts</a>
+                    <a href="index.html#cv">CV</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <article class="blog-post">
+            <div class="blog-header">
+                <h1 class="blog-title">Building Robust and Privacy-Preserving Machine Learning Models</h1>
+                <div class="post-meta">
+                    <span class="post-date">May 15, 2025</span>
+                    <div class="post-tags">
+                        <span class="tag">machine learning</span>
+                        <span class="tag">privacy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-content">
+                <p>
+                    Privacy is becoming an increasingly important consideration in machine 
+                    learning systems. As models are trained on sensitive user data, there's 
+                    a growing need to ensure that these models don't inadvertently memorize 
+                    or leak private information.
+                </p>
+                
+                <p>
+                    Several approaches have emerged to address this challenge:
+                </p>
+                
+                <h3>Differential Privacy</h3>
+                <p>
+                    Differential privacy provides a mathematical framework for measuring and 
+                    limiting the privacy risk when training models on sensitive data. By adding 
+                    carefully calibrated noise during the training process, we can guarantee 
+                    that the model doesn't reveal whether any particular data point was included 
+                    in the training set.
+                </p>
+                
+                <h3>Federated Learning</h3>
+                <p>
+                    Federated learning allows models to be trained across multiple devices or 
+                    servers while keeping the training data localized. Instead of sharing raw data, 
+                    only model updates are communicated, which helps preserve privacy.
+                </p>
+                
+                <pre><code>
+# Example of implementing a simple differentially private SGD
+import numpy as np
+
+def dp_sgd(data, labels, learning_rate, noise_scale, batch_size, epochs):
+    num_samples, num_features = data.shape
+    weights = np.zeros(num_features)
+    
+    for epoch in range(epochs):
+        # Shuffle data for each epoch
+        indices = np.random.permutation(num_samples)
+        data_shuffled = data[indices]
+        labels_shuffled = labels[indices]
+        
+        for i in range(0, num_samples, batch_size):
+            batch_data = data_shuffled[i:i+batch_size]
+            batch_labels = labels_shuffled[i:i+batch_size]
+            
+            # Compute gradients
+            predictions = np.dot(batch_data, weights)
+            errors = predictions - batch_labels
+            gradients = np.dot(batch_data.T, errors) / batch_size
+            
+            # Clip gradients for sensitivity control
+            grad_norm = np.linalg.norm(gradients)
+            gradients = gradients / max(1, grad_norm)
+            
+            # Add noise for privacy
+            noise = np.random.normal(0, noise_scale, num_features)
+            gradients += noise
+            
+            # Update weights
+            weights -= learning_rate * gradients
+            
+    return weights
+                </code></pre>
+                
+                <p>
+                    The challenges of implementing privacy-preserving machine learning are 
+                    significant, but the field is advancing rapidly. As regulations like GDPR 
+                    and CCPA impose stricter requirements on data handling, privacy-preserving 
+                    techniques will become standard practice in the machine learning community.
+                </p>
+                
+                <h3>Privacy-Utility Tradeoffs</h3>
+                <p>
+                    One of the central challenges in privacy-preserving machine learning is 
+                    balancing privacy with utility. Stronger privacy guarantees often come at
+                    the cost of reduced model performance. Research is ongoing to develop 
+                    techniques that minimize this tradeoff.
+                </p>
+                
+                <p>
+                    In my next post, I'll explore how these techniques can be applied specifically 
+                    to language models to prevent them from memorizing sensitive information from 
+                    their training data.
+                </p>
+            </div>
+            
+            <div class="blog-nav">
+                <div>
+                    <!-- Previous post link (if available) -->
+                    <!-- <a href="blog-post-2.html">← Previous Post</a> -->
+                </div>
+                <div>
+                    <a href="blog.html">← Back to All Posts</a>
+                </div>
+                <div>
+                    <!-- Next post link (if available) -->
+                    <a href="blog-post-2.html">Next Post →</a>
+                </div>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
