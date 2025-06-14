@@ -113,15 +113,28 @@
         
         .post-tags {
             display: flex;
-            gap: 6px;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            width: 100%;
         }
         
         .tag {
-            background-color: #f0f0f0;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: #555;
+            background-color: #f0f4f8;
+            color: #2c3e50;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid #e1e8ed;
+            white-space: nowrap;
+        }
+        
+        .tag:hover {
+            background-color: #e1e8ed;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
@@ -145,23 +158,29 @@
             <div class="blog-list">
                 <!-- Blog Post 1 -->
                 <article class="blog-post">
-                    <h2><a href="/blogs/post1.html">Building Robust and Privacy-Preserving Machine Learning Models</a></h2>
+                    <h2><a href="/blogs/post1.html">Why text alone or vision alone isn't enough?</a></h2>
                     <div class="post-meta">
-                        <span class="post-date">May 15, 2025</span>
+                        <span class="post-date">Jun 14, 2025</span>
                         <div class="post-tags">
-                            <span class="tag">machine learning</span>
-                            <span class="tag">privacy</span>
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Vision Language Models</span>
+                            <span class="tag">CLIP</span>
+                            <span class="tag">transformers</span>
+                            <span class="tag">Hugging Face</span>
+                            <span class="tag">YOLOWorld</span>
+                            <span class="tag">OWL-ViT</span>
+                            <span class="tag">OWL-v2</span>
                         </div>
                     </div>
                     <p>
-                        In this post, I discuss techniques for creating machine learning models 
-                        that respect user privacy while maintaining high accuracy and robustness 
-                        against adversarial attacks.
+                        Exploring the evolution of Vision Language Models (VLMs) and their impact on Open Vocabulary Object Detection. 
+                        Learn about the breakthroughs in VLMs, how to spin up a zero-shot image classifier, and when to choose or avoid 
+                        VLM for your product or research idea.
                     </p>
                     <p><a href="/blogs/post1.html">Read more →</a></p>
                 </article>
                 
-                <!-- Blog Post 2 -->
+                <!-- Commented out other blog posts for now
                 <article class="blog-post">
                     <h2><a href="/blogs/post2.html">Recent Advances in Large Language Model Inference</a></h2>
                     <div class="post-meta">
@@ -179,8 +198,7 @@
                     </p>
                     <p><a href="/blogs/post2.html">Read more →</a></p>
                 </article>
-                
-                <!-- Add more blog posts as needed -->
+                -->
             </div>
         </div>
     </div>

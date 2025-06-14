@@ -146,6 +146,8 @@
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
         
         .blog-card:hover {
@@ -164,6 +166,9 @@
         
         .blog-card-content {
             padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .blog-card h3 {
@@ -181,22 +186,44 @@
         
         .tags {
             display: flex;
-            gap: 6px;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-bottom: 15px;
+            width: 100%;
         }
         
         .tag {
-            background-color: #f0f0f0;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: #555;
+            background-color: #f0f4f8;
+            color: #2c3e50;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid #e1e8ed;
+            white-space: nowrap;
+        }
+        
+        .tag:hover {
+            background-color: #e1e8ed;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
         
         .blog-summary {
             font-size: 0.95rem;
             color: #444;
             margin-bottom: 15px;
+        }
+        
+        blockquote {
+            background-color: #f8f9fa;
+            border-left: 4px solid #e1e8ed;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-style: italic;
+            color: #2c3e50;
         }
         
         /* Responsive adjustments */
@@ -247,9 +274,9 @@
                     not just toy demos or tutorials.
                 </p>
                 <p>
-                    Each post walks through a specific challenge you’re likely to face in the wild – 
+                    Each post walks through a specific challenge you're likely to face in the wild – 
                     like fine-tuning models with barely any data, deploying LLMs under strict latency budgets, 
-                    or debugging hallucinations in RAG pipelines. We’re not here for fluff – we’re here to answer:
+                    or debugging hallucinations in RAG pipelines. We're not here for fluff – we're here to answer:
                     <strong>How the F*ck do you do that?</strong>
                 </p>
                 <p>
@@ -267,24 +294,29 @@
                 <div class="blog-card">
                     <div class="blog-card-img">Blog Image Placeholder</div>
                     <div class="blog-card-content">
-                        <h3><a href="/blogs/htf-post1.html">Understanding Differential Privacy in Large-Scale Systems</a></h3>
+                        <h3><a href="/blogs/post1.html">Why text alone or vision alone isn't enough?</a></h3>
                         <div class="blog-meta">
-                            <span class="date">May 20, 2025</span>
+                            <span class="date">Jun 14, 2025</span>
                             <span class="reading-time">15 min read</span>
                         </div>
                         <div class="tags">
-                            <span class="tag">privacy</span>
-                            <span class="tag">ML</span>
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Vision Language Models</span>
+                            <span class="tag">CLIP</span>
+                            <span class="tag">transformers</span>
+                            <span class="tag">Hugging Face</span>
+                            <span class="tag">YOLOWorld</span>
+                            <span class="tag">OWL-ViT</span>
+                            <span class="tag">OWL-v2</span>
                         </div>
                         <p class="blog-summary">
-                            Exploring the mathematical foundations and practical implementations of differential privacy 
-                            in large-scale machine learning systems.
+                            Exploring the evolution of Vision Language Models (VLMs) and their impact on Open Vocabulary Object Detection.
                         </p>
-                        <a href="/blogs/htf-post1.html">Read more →</a>
+                        <a href="/blogs/post1.html">Read more →</a>
                     </div>
                 </div>
                 
-                <!-- Blog Card 2 -->
+                <!-- Commented out other blog cards for now
                 <div class="blog-card">
                     <div class="blog-card-img">Blog Image Placeholder</div>
                     <div class="blog-card-content">
@@ -305,7 +337,6 @@
                     </div>
                 </div>
                 
-                <!-- Blog Card 3 -->
                 <div class="blog-card">
                     <div class="blog-card-img">Blog Image Placeholder</div>
                     <div class="blog-card-content">
@@ -326,7 +357,6 @@
                     </div>
                 </div>
                 
-                <!-- Blog Card 4 -->
                 <div class="blog-card">
                     <div class="blog-card-img">Blog Image Placeholder</div>
                     <div class="blog-card-content">
@@ -347,7 +377,6 @@
                     </div>
                 </div>
                 
-                <!-- Blog Card 5 -->
                 <div class="blog-card">
                     <div class="blog-card-img">Blog Image Placeholder</div>
                     <div class="blog-card-content">
@@ -368,7 +397,6 @@
                     </div>
                 </div>
                 
-                <!-- Blog Card 6 -->
                 <div class="blog-card">
                     <div class="blog-card-img">Blog Image Placeholder</div>
                     <div class="blog-card-content">
@@ -388,6 +416,7 @@
                         <a href="/blogs/htf-post6.html">Read more →</a>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </div>

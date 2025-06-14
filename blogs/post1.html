@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Robust and Privacy-Preserving Machine Learning Models - Your Name</title>
+    <title>Why text alone or vision alone isn't enough? </title>
     <style>
         /* Global Styles - Same as index.html */
         :root {
@@ -97,15 +97,38 @@
         
         .post-tags {
             display: flex;
-            gap: 6px;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            width: 100%;
         }
         
         .tag {
-            background-color: #f0f0f0;
-            padding: 2px 8px;
+            background-color: #f0f4f8;
+            color: #2c3e50;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid #e1e8ed;
+            white-space: nowrap;
+        }
+        
+        .tag:hover {
+            background-color: #e1e8ed;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        blockquote {
+            background-color: #f8f9fa;
+            border-left: 4px solid #e1e8ed;
+            padding: 20px;
+            margin: 20px 0;
             border-radius: 4px;
-            font-size: 0.8rem;
-            color: #555;
+            font-style: italic;
+            color: #2c3e50;
         }
         
         .blog-content {
@@ -187,117 +210,211 @@
     <div class="container">
         <article class="blog-post">
             <div class="blog-header">
-                <h1 class="blog-title">Building Robust and Privacy-Preserving Machine Learning Models</h1>
+                <h1 class="blog-title">Why text alone or vision alone isn't enough?</h1>
                 <div class="post-meta">
-                    <span class="post-date">May 15, 2025</span>
+                    <span class="post-date">Jun 14, 2025</span>
                     <div class="post-tags">
-                        <span class="tag">machine learning</span>
-                        <span class="tag">privacy</span>
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Vision Language Models</span>
+                        <span class="tag">CLIP</span>
+                        <span class="tag">transformers</span>
+                        <span class="tag">Hugging Face</span>
+                        <span class="tag">YOLOWorld, YOLO</span>
+                        <span class="tag">OWL-ViT</span>
+                        <span class="tag">OWL-v2</span>
                     </div>
                 </div>
+                <p><em>Author: Vishwanatha Perala</em></p>
             </div>
             
             <div class="blog-content">
-                <p>
-                    Privacy is becoming an increasingly important consideration in machine 
-                    learning systems. As models are trained on sensitive user data, there's 
-                    a growing need to ensure that these models don't inadvertently memorize 
-                    or leak private information.
-                </p>
-                
-                <p>
-                    Several approaches have emerged to address this challenge:
-                </p>
-                
-                <h3>Differential Privacy</h3>
-                <p>
-                    Differential privacy provides a mathematical framework for measuring and 
-                    limiting the privacy risk when training models on sensitive data. By adding 
-                    carefully calibrated noise during the training process, we can guarantee 
-                    that the model doesn't reveal whether any particular data point was included 
-                    in the training set.
-                </p>
-                
-                <h3>Federated Learning</h3>
-                <p>
-                    Federated learning allows models to be trained across multiple devices or 
-                    servers while keeping the training data localized. Instead of sharing raw data, 
-                    only model updates are communicated, which helps preserve privacy.
-                </p>
-                
-                <pre><code>
-# Example of implementing a simple differentially private SGD
-import numpy as np
-
-def dp_sgd(data, labels, learning_rate, noise_scale, batch_size, epochs):
-    num_samples, num_features = data.shape
-    weights = np.zeros(num_features)
-    
-    for epoch in range(epochs):
-        # Shuffle data for each epoch
-        indices = np.random.permutation(num_samples)
-        data_shuffled = data[indices]
-        labels_shuffled = labels[indices]
+                <p>The world of AI is evolving rapidly, gone are the days where vision models and language models existed as separate systems. We now step into a world where it is a combination of vision and language models. These models are referred to as <strong>Vision Language Models or VLMs</strong>.</p>
         
-        for i in range(0, num_samples, batch_size):
-            batch_data = data_shuffled[i:i+batch_size]
-            batch_labels = labels_shuffled[i:i+batch_size]
+                <p>Recently I got introduced to the world of Open Vocabulary Object Detection (OVOD), a specific extension on object detection models. The traditional object detection models that we see are the Closed Vocabulary Object detection. There are many articles and projects out there, however, today we are going to explore Open Vocabulary Object detection in this article.</p>
+        
+                <blockquote>
+                  Welcome to "HTF - do you even?" series, this is an honest attempt to introduce not just architectures, but also help AI/ML enthusiasts, students, startup teams, or professors to get their hands dirty. Whether you are a student or a startup team who wants to implement this or an enthusiast who wants to understand what it's about – this series is for you.
+                </blockquote>
+        
+                <h2>Outcomes you'll take away from this article:</h2>
+                <ul>
+                  <li>Understanding the breakthroughs in VLMs</li>
+                  <li>Spin up a zero-shot image class</li>
+                  <li>Recipe for training a small VLM</li>
+                  <li>Decide when to choose or avoid VLM for your product or research idea</li>
+                </ul>
+        
+                <h2>Quick history lesson</h2>
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjl4aG5qbnY1dWdvdzhiaHc2dWU1N3Y1bDJieXphODlneXFyNnZteiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/7qsy0r6iwCJsURssZY/giphy.gif" alt="History GIF" />
+        
+                <p>Although when we start looking into this space, the most famous paper is <a href="https://arxiv.org/abs/2103.00020">CLIP by OpenAI</a>, there are other important contributions before this — <a href="https://arxiv.org/abs/2006.06666">VirTex</a>, <a href="https://arxiv.org/abs/2102.05918">ALIGN</a>, and <a href="https://arxiv.org/abs/2010.00747">ConVIRT</a>.</p>
+        
+                <p>What did CLIP introduce and get right? CLIP opened up the closed vocabulary tasks. They showed the potential of how open-vocabulary systems can be built and how we could unlock the chance to combine natural language to help understand images.</p>
+        
+                <blockquote>What is closed vocabulary? Closed vocabulary is when you have a pre-defined label.</blockquote>
+        
+                <p>Unable to visualise what I am saying? Recently Apple WWDC spoke about a feature where you use natural language to retrieve images. That is exactly what VLMs do. Now CLIP helped us understand how we could create that latent space where both images and corresponding text are present.</p>
+        
+                <h2>Let's compare closed vs open vocabulary</h2>
+        
+                <table>
+                  <thead>
+                    <tr><th></th><th>Closed Vocabulary</th><th>Open Vocabulary</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Label Space</td><td>Yes (e.g., ImageNet's 1000 classes)</td><td>No – text prompt defines the class at runtime</td></tr>
+                    <tr><td>Trains on</td><td>Human-annotated categorical labels</td><td>Pairs of image & text</td></tr>
+                    <tr><td>Out-of-distribution</td><td>Misclassifies unseen objects</td><td>Can localise unseen objects</td></tr>
+                    <tr><td>Typical tasks</td><td>Classification, segmentation</td><td>Retrieval, detection, grounding</td></tr>
+                    <tr><td>Compute</td><td>Lower</td><td>Higher</td></tr>
+                  </tbody>
+                </table>
+        
+                <p>Text vocabulary is limited and hence it's easy to build systems like ChatGPT. But images are raw, unstructured, and unlimited. Annotating such datasets is impractical — for instance, ImageNet took years to build. VLMs overcome this by learning from language-image pairs.</p>
             
-            # Compute gradients
-            predictions = np.dot(batch_data, weights)
-            errors = predictions - batch_labels
-            gradients = np.dot(batch_data.T, errors) / batch_size
+                <h2>Let's get our hands dirty before we explore further</h2>
+        <p>Let's look at how CLIP works. Please follow the step-by-step guide:</p>
+
+        <h3>Step 1: Install dependencies</h3>
+        <pre><code>pip install transformers torch pillow</code></pre>
+
+        <h3>Step 2: Run the pre-trained model</h3>
+        <pre><code>from PIL import Image
+import requests
+from transformers import AutoProcessor, CLIPModel
+import matplotlib.pyplot as plt
+
+model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+processor = AutoProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
+image = Image.open("datasets/test-images/cross-walks.jpeg")
+image = image.resize((224,224))
+inputs = processor(
+    text=["a photo of a dog", "a photo of a crosswalk", "a photo of an aeroplane", 
+          "a photo of a city street", "a person in yellow shirt is crossing the street"],
+    images=image, return_tensors="pt", padding=True
+)
+
+outputs = model(**inputs)
+logits_per_image = outputs.logits_per_image
+probs = logits_per_image.softmax(dim=1)
+print(probs)</code></pre>
+
+        <p>You'll be running on CPU, so be patient!</p>
+        <p>The output gives the similarity probabilities between your input text and the image.</p>
+
+        <h2>So what is CLIP doing here?</h2>
+        <img src="https://viso.ai/wp-content/uploads/2023/12/Contrastive-Language-Image-Pretraining-CLIP-Training-Architecture.jpg" alt="CLIP Architecture" />
+        <p>CLIP uses two encoders: one for images and one for text. It maps both into a shared latent (vector) space, allowing comparison via cosine similarity.</p>
+
+        <p><strong>Contrastive loss</strong> is used to push matching pairs closer in that space, and mismatched pairs further apart.</p>
+
+        <h2>How far did we come from CLIP?</h2>
+        <p>Let's look at a few models that followed CLIP: <strong>YOLOWorld</strong>, <strong>OWL-ViT</strong>, and <strong>OWL-v2</strong>.</p>
+
+        <h3>1. YOLOWorld</h3>
+        <p>YOLOWorld builds on YOLO's speed and allows object detection using natural language (though phrasing must be crafted carefully). Check out <a href="https://github.com/SuryaViswanath/Open-Vocabulary-Object-Detection">my GitHub repo</a> for a custom-trained example.</p>
+
+        <h3>2. OWL-ViT</h3>
+        <p><a href="https://arxiv.org/pdf/2205.06230">OWL-ViT</a> builds on CLIP by adding detection heads — layers that output bounding boxes for matched objects. It uses vision transformers to generate both text and image embeddings.</p>
+
+        <img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/model_doc/owlvit_architecture.jpg" alt="OWL-ViT Architecture" />
+
+        <p>Code example to test:</p>
+        <pre><code>from transformers import OwlViTProcessor, OwlViTForObjectDetection
+from PIL import Image, ImageDraw
+import torch
+
+processor = OwlViTProcessor.from_pretrained("google/owlvit-base-patch32")
+model = OwlViTForObjectDetection.from_pretrained("google/owlvit-base-patch32")
+
+image = Image.open("datasets/test-images/a-linkedin-test-1.jpg")
+text_labels = [["choose the person on the bicycle"]]
+inputs = processor(text=text_labels, images=image, return_tensors="pt")
+outputs = model(**inputs)
+
+target_sizes = torch.tensor([(image.height, image.width)])
+results = processor.post_process_grounded_object_detection(outputs, target_sizes, 0.1, text_labels)[0]
+
+draw = ImageDraw.Draw(image)
+for box, score, label in zip(results["boxes"], results["scores"], results["text_labels"]):
+    print(f"Detected {label} with confidence {round(score.item(), 3)} at {box.tolist()}")
+    draw.rectangle(((box[0], box[1]), (box[0]+box[2], box[1]+box[3])))
+    draw.text((20, 70), label)
+
+image.save("test2.jpeg", "JPEG")</code></pre>
+
+        <h3>3. OWL-v2</h3>
+        <p><a href="https://arxiv.org/pdf/2306.09683">OWL-v2</a> is Google's follow-up to OWL-ViT. Unlike its predecessor, it is trained end-to-end (instead of reusing CLIP weights). This improves accuracy and bounding box quality.</p>
+
+        <img src="https://cdn.prod.website-files.com/645cec60ffb18d5ebb37da4b/66c705454893e981b79a9757_66827fdfdeab6d3c8e95a71c_scale_up_self_training.jpeg" alt="OWL-v2 Diagram" />
+
+        <pre><code>from transformers import Owlv2Processor, Owlv2ForObjectDetection
+from PIL import Image, ImageDraw
+import torch
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+processor = Owlv2Processor.from_pretrained("google/owlv2-base-patch16")
+model = Owlv2ForObjectDetection.from_pretrained("google/owlv2-base-patch16").to(device)
+
+image = Image.open("datasets/test-images/a-linkedin-test-1.jpg")
+text_labels = [["a person in dark shirt with sunglasses on a bicycle"]]
+inputs = processor(text=text_labels, images=image, return_tensors="pt")
+inputs = {k: v.to(device) for k, v in inputs.items()}
+outputs = model(**inputs)
+
+target_sizes = torch.tensor([(image.height, image.width)], device=device)
+results = processor.post_process_grounded_object_detection(outputs, target_sizes, 0.1, text_labels)[0]
+
+draw = ImageDraw.Draw(image)
+for box, score, label in zip(results["boxes"], results["scores"], results["text_labels"]):
+    box = [round(i, 2) for i in box.tolist()]
+    print(f"Detected {label} with confidence {round(score.item(), 3)} at location {box}")
+    draw.rectangle(((box[0], box[1]), (box[2], box[3])))
+    draw.text((20, 70), label)
+
+image.save("test2.jpeg", "JPEG")</code></pre>
             
-            # Clip gradients for sensitivity control
-            grad_norm = np.linalg.norm(gradients)
-            gradients = gradients / max(1, grad_norm)
+                    <h2>So when should you build your own OVOD models?</h2>
+                    <p>Open Vocabulary Object Detection (OVOD) models are ideal when you're working with <strong>long-tail classes</strong> — objects that appear infrequently in training data.</p>
             
-            # Add noise for privacy
-            noise = np.random.normal(0, noise_scale, num_features)
-            gradients += noise
+                    <p><strong>Use OVOD when:</strong></p>
+                    <ul>
+                      <li>You need to search or detect long-tail/unseen classes</li>
+                      <li>Your product benefits from flexible, semantic-based image interpretation</li>
+                    </ul>
             
-            # Update weights
-            weights -= learning_rate * gradients
+                    <p><strong>Avoid OVOD when:</strong></p>
+                    <ul>
+                      <li>You only need a fixed set of known categories (e.g., traffic signs)</li>
+                      <li>You're working with simple, repetitive features</li>
+                    </ul>
             
-    return weights
-                </code></pre>
-                
-                <p>
-                    The challenges of implementing privacy-preserving machine learning are 
-                    significant, but the field is advancing rapidly. As regulations like GDPR 
-                    and CCPA impose stricter requirements on data handling, privacy-preserving 
-                    techniques will become standard practice in the machine learning community.
-                </p>
-                
-                <h3>Privacy-Utility Tradeoffs</h3>
-                <p>
-                    One of the central challenges in privacy-preserving machine learning is 
-                    balancing privacy with utility. Stronger privacy guarantees often come at
-                    the cost of reduced model performance. Research is ongoing to develop 
-                    techniques that minimize this tradeoff.
-                </p>
-                
-                <p>
-                    In my next post, I'll explore how these techniques can be applied specifically 
-                    to language models to prevent them from memorizing sensitive information from 
-                    their training data.
-                </p>
-            </div>
+                    <p>Note: OVOD models can be resource-intensive. If compute is limited, try pre-trained models or fine-tuning existing ones instead of training from scratch.</p>
             
-            <div class="blog-nav">
-                <div>
-                    <!-- Previous post link (if available) -->
-                    <!-- <a href="post0.html">← Previous Post</a> -->
-                </div>
-                <div>
-                    <a href="/blogs/">← Back to All Posts</a>
-                </div>
-                <div>
-                    <!-- Next post link (if available) -->
-                    <a href="post2.html">Next Post →</a>
-                </div>
-            </div>
-        </article>
-    </div>
-</body>
-</html>
+                    <h3>Quantifying the decision for your own product</h3>
+                    <ul>
+                      <li><strong>Metric shift</strong>: Estimate how much better the new system performs (e.g., Recall@10 ↑ 15%).</li>
+                      <li><strong>User impact</strong>: Does better recall translate to improved retention or revenue?</li>
+                      <li><strong>Cost</strong>: GPU hours × rate + maintenance — compare this to simpler solutions.</li>
+                      <li><strong>Time-to-market</strong>: Can you start with an API model and iterate later?</li>
+                    </ul>
+            
+                    <p><strong>If the incremental value ÷ cost ratio beats other priorities — go for it!</strong></p>
+            
+                    <h2>Wrapping up</h2>
+                    <p>I hope this gave you a clear and approachable introduction to Open Vocabulary Object Detection (OVOD). I'll be sharing more deep dives like this every week, so stay tuned!</p>
+            
+                    <p>I'd love to hear your thoughts — drop a comment if there's a specific use case, technical topic, or concept you'd like me to cover in future posts. I'm learning alongside you, so if you spot any mistakes or oversights, let me know — I'll update the post or explain why it's written that way. Transparency is key.</p>
+                  </div>
+            
+                  <div class="blog-nav">
+                    <div></div>
+                    <div><a href="/blogs/">← Back to All Posts</a></div>
+                    <div><a href="post2.html">Next Post →</a></div>
+                  </div>
+                </article>
+              </div>
+            </body>
+            </html>
